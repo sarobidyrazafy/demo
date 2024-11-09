@@ -17,6 +17,11 @@ public class MainController {
     @Autowired
     private UtilisateurService utilisateurService;
 
+    @GetMapping("/")
+    public String showLoginPage() {
+        return "connexion"; // Renvoie la page login.html
+    }
+
     // Page de connexion/inscription
     @GetMapping("/connexion")
     public String connexion() {
