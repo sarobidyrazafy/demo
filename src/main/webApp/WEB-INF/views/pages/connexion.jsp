@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,15 +15,17 @@
                 <input type="email" class="form-control" id="email" name="email" required>
             </div>
             <div class="form-group">
-                <label for="password">Mot de passe</label>
-                <input type="password" class="form-control" id="password" name="password" required>
+                <label for="mdp">Mot de passe</label>
+                <input type="password" class="form-control" id="mdp" name="mdp" required>
             </div>
-            <button type="submit" class="btn btn-primary">Se connecter</button>
+            <button type="submit" class="btn btn-primary">Se connecter / S'inscrire</button>
 
-            <!-- Affichage des erreurs si l'email est incorrect ou mot de passe erroné -->
-            <div th:if="${error}" class="alert alert-danger mt-3" role="alert">
-                <p th:text="${error}"></p>
-            </div>
+            <!-- Affichage des erreurs en cas de connexion échouée -->
+            <c:if test="${not empty error}">
+                <div class="alert alert-danger mt-3">
+                    <p>${error}</p>
+                </div>
+            </c:if>
         </form>
     </div>
 </body>
