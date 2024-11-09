@@ -1,6 +1,5 @@
 CREATE TABLE utilisateur (
     id SERIAL PRIMARY KEY,
-    nom VARCHAR(100),
     email VARCHAR(100),
     mdp VARCHAR(255)
 );
