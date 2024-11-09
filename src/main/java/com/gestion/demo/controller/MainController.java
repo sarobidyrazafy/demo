@@ -29,8 +29,8 @@ public class MainController {
     }
 
     // Gère la soumission du formulaire de login/signup
-    @PostMapping("/connexion")
-    public String connexion(@ModelAttribute UtilisateurDTO loginDTO, Model model) {
+    @PostMapping("/traitementconnexion")
+    public String traitementconnexion(@ModelAttribute UtilisateurDTO loginDTO, Model model) {
         Utilisateur utilisateur = utilisateurService.findByEmail(loginDTO.getEmail());
 
         if (utilisateur != null) { // Si l'utilisateur existe
