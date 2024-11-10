@@ -64,12 +64,11 @@ public class UtilisateurController {
             return "redirect:/signup?error=exists";
         }
         
-        // Créez et sauvegardez le nouvel utilisateur
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setEmail(utilisateurDTO.getEmail());
-        utilisateur.setMdp(utilisateurDTO.getMdp()); // N'oubliez pas de chiffrer le mot de passe en production
+        utilisateur.setMdp(utilisateurDTO.getMdp()); 
 
         utilisateurRepository.save(utilisateur);
-        return "redirect:/login";  // Redirige vers la page de connexion après inscription
+        return "redirect:/login";  
     }
 }
