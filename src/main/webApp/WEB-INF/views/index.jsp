@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Redirection</title>
-    <meta http-equiv="refresh" content="0; URL=pages/login.jsp" />
+    <!-- <meta http-equiv="refresh" content="3;url=<%= request.getContextPath() + "/login" %>" /> -->
 </head>
 <body>
-    <p>Redirection vers la page de connexion...</p>
+    <p>Redirection <a href="/login">Login</a></p>
 </body>
 </html>
