@@ -88,7 +88,8 @@ CREATE TABLE profil_langue (
 CREATE TABLE annonce (
     id SERIAL PRIMARY KEY,
     date_annonce DATE,
-    id_poste INT
+    id_poste INT,
+    FOREIGN KEY(id_poste) REFERENCES poste(id)
 );
 
 CREATE TABLE cv (
