@@ -7,6 +7,7 @@
     <!-- <meta http-equiv="refresh" content="3;url=<%= request.getContextPath() + "/login" %>" /> -->
 </head>
 <body>
-    <p>Redirection <a href="/login">Login</a></p>
+    <p>Redirection <a href="/login.jsp">Login</a></p>
+    <p>Redirection <a href="/signup">Signup</a></p>
 </body>
 </html>

@@ -8,4 +8,5 @@ import com.gestion.demo.model.Utilisateur;
 
 public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> {
     Optional<Utilisateur> findByEmailAndMdp(String email, String mdp);
+    Optional<Utilisateur> findByEmail(String email);
 }

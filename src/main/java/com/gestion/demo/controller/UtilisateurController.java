@@ -49,4 +49,27 @@ public class UtilisateurController {
         mv.addObject("page", "home");
         return mv;
     }
+
+    @GetMapping("/signup")
+    public ModelAndView showSignUpPage() {
+        ModelAndView mv = new ModelAndView("signup");
+        mv.addObject("page", "signup");
+        return mv;
+    }
+
+    @PostMapping("/register")
+    public String register(@ModelAttribute UtilisateurDTO utilisateurDTO) {
+        // Vérifiez si l'utilisateur existe déjà
+        if (utilisateurRepository.findByEmail(utilisateurDTO.getEmail()).isPresent()) {
+            return "redirect:/signup?error=exists";
+        }
+        
+        // Créez et sauvegardez le nouvel utilisateur
+        Utilisateur utilisateur = new Utilisateur();
+        utilisateur.setEmail(utilisateurDTO.getEmail());
+        utilisateur.setMdp(utilisateurDTO.getMdp()); // N'oubliez pas de chiffrer le mot de passe en production
+
+        utilisateurRepository.save(utilisateur);
+        return "redirect:/login";  // Redirige vers la page de connexion après inscription
+    }
 }
