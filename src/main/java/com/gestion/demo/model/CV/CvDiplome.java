@@ -33,4 +33,9 @@ public class CvDiplome {
     private Filiere filiere;
 
     private String etablissement; 
+
+
+    public CvDiplome(String filier){
+
+    }
 }
