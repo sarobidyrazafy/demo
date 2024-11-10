@@ -1,3 +1,6 @@
+CREATE DATABASE gestion_rh;
+\c gestion_rh;
+
 CREATE TABLE utilisateur (
     id SERIAL PRIMARY KEY,
     nom VARCHAR(100),
@@ -53,6 +56,19 @@ CREATE TABLE profil (
     FOREIGN KEY (id_sexe) REFERENCES sexe(id)
 );
 
+CREATE TABLE employe (
+    id SERIAL PRIMARY KEY,
+    nom VARCHAR(100),
+    email VARCHAR(100),
+    date_naissance DATE,
+    id_sexe INT,
+    id_cv INT,
+    id_poste INT,
+    FOREIGN KEY (id_sexe) REFERENCES sexe(id),
+    FOREIGN KEY (id_cv) REFERENCES cv(id),
+    FOREIGN KEY (id_poste) REFERENCES poste(id)
+);
+
 CREATE TABLE profil_diplome (
     id_profil INT,
     id_diplome INT,
@@ -72,8 +88,7 @@ CREATE TABLE profil_langue (
 CREATE TABLE annonce (
     id SERIAL PRIMARY KEY,
     date_annonce DATE,
-    id_poste INT,
-    FOREIGN KEY (id_profil) REFERENCES profil(id)
+    id_poste INT
 );
 
 CREATE TABLE cv (
@@ -136,7 +151,7 @@ CREATE TABLE test(
     id SERIAL PRIMARY KEY,
     id_cv INT,
     note DECIMAL,
-    FOREIGN KEY (id_cv) REFERENCES cv(id),
+    FOREIGN KEY (id_cv) REFERENCES cv(id)
 );
 
 CREATE TABLE entretien(
@@ -144,7 +159,7 @@ CREATE TABLE entretien(
     id_cv INT,
     note DECIMAL,
     pretention_salariale DECIMAL,
-    FOREIGN KEY (id_cv) REFERENCES cv(id),
+    FOREIGN KEY (id_cv) REFERENCES cv(id)
 );
 
 CREATE TABLE contrat (
@@ -165,15 +180,3 @@ CREATE TABLE contrat (
     FOREIGN KEY (id_type_contrat) REFERENCES type_contrat(id)
 );
 
-CREATE TABLE employe (
-    id SERIAL PRIMARY KEY,
-    nom VARCHAR(100),
-    email VARCHAR(100),
-    date_naissance DATE,
-    id_sexe INT,
-    id_cv INT,
-    id_poste INT,
-    FOREIGN KEY (id_sexe) REFERENCES sexe(id),
-    FOREIGN KEY (id_cv) REFERENCES cv(id),
-    FOREIGN KEY (id_poste) REFERENCES poste(id)
-);

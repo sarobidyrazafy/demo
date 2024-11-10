@@ -1,7 +1,9 @@
+CREATE DATABASE gestion_rh;
+\c gestion_rh;
 create table utilisateur(
-    id int primary key auto_increment
-    nom varchar
-    email --(verification mail valide)
+    id int primary key,
+    nom varchar,
+    email --(verification mail valide),
     mdp varchar
 );
 
