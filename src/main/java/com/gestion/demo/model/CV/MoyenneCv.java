@@ -10,7 +10,6 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
-
 public class MoyenneCv {
     @Id
     @OneToOne
