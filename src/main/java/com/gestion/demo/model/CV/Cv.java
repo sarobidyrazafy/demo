@@ -1,6 +1,7 @@
 package com.gestion.demo.model.CV;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 import com.gestion.demo.model.Annonce.Annonce;
@@ -58,6 +59,14 @@ public class Cv {
 
     public Cv(){
         
+    }
+    public int calculerAge() throws Exception {
+        LocalDate currentDate = LocalDate.now(); // Obtenir la date actuelle
+        if ((dateNaissance != null) && (dateNaissance.isBefore(currentDate))) {
+            return Period.between(dateNaissance, currentDate).getYears();
+        } else {
+            throw new IllegalArgumentException("La date de naissance doit être avant la date actuelle.");
+        }
     }
     
 }

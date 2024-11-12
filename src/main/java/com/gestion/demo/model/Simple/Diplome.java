@@ -14,7 +14,7 @@ public class Diplome {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     String designation;
     Integer niveau;

@@ -34,8 +34,12 @@ public class CvDiplome {
 
     private String etablissement; 
 
+    public CvDiplome() {
+    }
 
-    public CvDiplome(String filier){
-
+    public CvDiplome(Diplome diplome,Filiere filiere,String etablissement){
+        setDiplome(diplome);
+        setFiliere(filiere);
+        setEtablissement(etablissement);
     }
 }

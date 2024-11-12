@@ -27,5 +27,13 @@ public class CvLangue {
     @JoinColumn(name = "id_langue")
     private Langue langue;
 
+    public CvLangue(){
+        
+    }
+    public CvLangue(Cv cv, Langue langue) {
+        this.cv = cv;
+        this.langue = langue;
+    }
+
     // Getters et setters
 }

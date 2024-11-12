@@ -89,7 +89,9 @@ CREATE TABLE annonce (
     id SERIAL PRIMARY KEY,
     date_annonce DATE,
     id_poste INT,
+    id_profil INT,
     FOREIGN KEY(id_poste) REFERENCES poste(id)
+    FOREIGN KEY(id_profil) REFERENCES profil(id)
 );
 
 CREATE TABLE cv (

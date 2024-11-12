@@ -13,7 +13,11 @@ import lombok.Setter;
 public class Filiere {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
-    private String designation;   
+    private String designation;
+
+    public Filiere(String designation) {
+        this.designation = designation;
+    }   
 }

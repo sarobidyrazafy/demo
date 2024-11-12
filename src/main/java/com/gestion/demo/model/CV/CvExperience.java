@@ -33,4 +33,14 @@ public class CvExperience {
     private LocalDate dateFin;
     private String posteOccupe;
     private String entreprise;
+    public CvExperience() {
+    }
+    public CvExperience(Domaine domaine, LocalDate dateDebut, LocalDate dateFin, String posteOccupe,
+            String entreprise) {
+        this.domaine = domaine;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.posteOccupe = posteOccupe;
+        this.entreprise = entreprise;
+    }
 }
