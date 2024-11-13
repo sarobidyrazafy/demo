@@ -2,7 +2,6 @@ package com.gestion.demo.model.Annonce;
 
 import java.time.LocalDate;
 
-import com.gestion.demo.model.Poste;
 import com.gestion.demo.model.Profil.Profil;
 
 import jakarta.persistence.Entity;
@@ -22,9 +21,6 @@ public class Annonce {
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     int id;
     LocalDate dateAnnonce;
-    @ManyToOne
-    @JoinColumn(name="id_poste",referencedColumnName = "id")
-    Poste poste;
 
     @ManyToOne
     @JoinColumn(name = "id_profil",referencedColumnName = "id")

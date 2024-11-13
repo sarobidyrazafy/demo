@@ -17,6 +17,9 @@ public class Filiere {
 
     private String designation;
 
+    public Filiere() {
+    }
+
     public Filiere(String designation) {
         this.designation = designation;
     }   

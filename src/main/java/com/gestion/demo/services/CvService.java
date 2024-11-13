@@ -12,9 +12,11 @@ import com.gestion.demo.model.CV.Cv;
 import com.gestion.demo.model.CV.CvDiplome;
 import com.gestion.demo.model.CV.CvExperience;
 import com.gestion.demo.model.CV.CvLangue;
+import com.gestion.demo.model.CV.MoyenneCv;
 import com.gestion.demo.model.Profil.Profil;
 import com.gestion.demo.model.Profil.ProfilDiplome;
 import com.gestion.demo.model.Simple.Diplome;
+import com.gestion.demo.repository.Annonce.AnnonceRepo;
 import com.gestion.demo.repository.CV.CvRepo;
 import com.gestion.demo.repository.simple.DiplomeRepo;
 import com.gestion.demo.repository.simple.DomaineRepo;
@@ -34,6 +36,8 @@ public class CvService {
     DiplomeRepo diplomeRepo;
     @Autowired
     DomaineRepo domaineRepo;
+    @Autowired
+    AnnonceRepo annonceRepo;
 
     public List<CvLangue> getListeCvLangue(String[] langues,Cv cv) throws Exception{
         ArrayList<CvLangue> listeCvLangue = new ArrayList<>();
@@ -69,9 +73,11 @@ public class CvService {
         }
         return listeExperiences;
     }
-    public void calculateMoyenneCv(Cv cv , Annonce annonce) throws Exception{
+    public MoyenneCv calculateMoyenneCv(Cv cv , int idAnnonce) throws Exception{
+        Annonce annonce = annonceRepo.findById(idAnnonce).orElseThrow(()-> new Exception("Annonce inexistante "));
         Profil profil = annonce.getProfil();
         /* Ato ny manao comparaison */
+        // Mbola tsy mety
         double points = 0;
         if (profil.getAgeMin() <= cv.calculerAge() && cv.calculerAge() <= profil.getAgeMax() ) {
             points+=3;
@@ -83,9 +89,13 @@ public class CvService {
                 if (profilDiplome.getDiplome().getNiveau() == cvDiplome.getDiplome().getNiveau()) {
                     points+=2;        
                 }
-                
             }
         }
+        MoyenneCv mCv = new MoyenneCv();
+        mCv.setMoyenne(points);
+        mCv.setCv(cv);
+
+        return mCv;
         
     }
 }

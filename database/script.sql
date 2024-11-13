@@ -56,19 +56,6 @@ CREATE TABLE profil (
     FOREIGN KEY (id_sexe) REFERENCES sexe(id)
 );
 
-CREATE TABLE employe (
-    id SERIAL PRIMARY KEY,
-    nom VARCHAR(100),
-    email VARCHAR(100),
-    date_naissance DATE,
-    id_sexe INT,
-    id_cv INT,
-    id_poste INT,
-    FOREIGN KEY (id_sexe) REFERENCES sexe(id),
-    FOREIGN KEY (id_cv) REFERENCES cv(id),
-    FOREIGN KEY (id_poste) REFERENCES poste(id)
-);
-
 CREATE TABLE profil_diplome (
     id_profil INT,
     id_diplome INT,
@@ -85,12 +72,25 @@ CREATE TABLE profil_langue (
     FOREIGN KEY (id_langue) REFERENCES langue(id)
 );
 
+CREATE TABLE employe (
+    id SERIAL PRIMARY KEY,
+    nom VARCHAR(100),
+    email VARCHAR(100),
+    date_naissance DATE,
+    id_sexe INT,
+    id_cv INT,
+    id_poste INT,
+    FOREIGN KEY (id_sexe) REFERENCES sexe(id),
+    FOREIGN KEY (id_cv) REFERENCES cv(id),
+    FOREIGN KEY (id_poste) REFERENCES poste(id)
+);
+
+
+
 CREATE TABLE annonce (
     id SERIAL PRIMARY KEY,
     date_annonce DATE,
-    id_poste INT,
     id_profil INT,
-    FOREIGN KEY(id_poste) REFERENCES poste(id)
     FOREIGN KEY(id_profil) REFERENCES profil(id)
 );
 
