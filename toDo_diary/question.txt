@@ -1,0 +1,4 @@
+- Atao Auto-complete le Chat Bot 
+- Les questions sont dans la base de donnees
+- Les reponses varie en fonction des postes
+

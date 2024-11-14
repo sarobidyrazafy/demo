@@ -39,6 +39,8 @@ public class CvService {
     @Autowired
     AnnonceRepo annonceRepo;
 
+    
+    
     public List<CvLangue> getListeCvLangue(String[] langues,Cv cv) throws Exception{
         ArrayList<CvLangue> listeCvLangue = new ArrayList<>();
         for (int i = 0; i < langues.length; i++) {

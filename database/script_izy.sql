@@ -128,3 +128,22 @@ create table employe(
     id_contrat int fk
 );
 
+DELETE FROM cv;
+DELETE FROM cv_langue;
+DELETE FROM cv_diplome;
+DELETE FROM cv_experience;
+
+/* Momban'ilay Chat BOT */
+
+CREATE TABLE question(
+    id INTEGER PRIMARY KEY,
+    question TEXT
+);
+CREATE TABLE reponse(
+    id INTEGER PRIMARY KEY,
+    id_question INTEGER,
+    id_poste INTEGER,
+    reponse TEXT,
+    FOREIGN KEY(id_question) REFERENCES question(id),
+    FOREIGN KEY(id_poste) REFERENCES poste(id)
+);  

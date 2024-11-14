@@ -183,3 +183,17 @@ CREATE TABLE contrat (
     FOREIGN KEY (id_type_contrat) REFERENCES type_contrat(id)
 );
 
+/* Momban'ilay Chat BOT */
+CREATE TABLE question(
+    id INTEGER PRIMARY KEY,
+    question TEXT
+);
+
+CREATE TABLE reponse(
+    id INTEGER PRIMARY KEY,
+    id_question INTEGER,
+    id_poste INTEGER,
+    reponse TEXT,
+    FOREIGN KEY(id_question) REFERENCES question(id),
+    FOREIGN KEY(id_poste) REFERENCES poste(id)
+);
