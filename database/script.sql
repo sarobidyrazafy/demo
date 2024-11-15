@@ -197,3 +197,10 @@ CREATE TABLE reponse(
     FOREIGN KEY(id_question) REFERENCES question(id),
     FOREIGN KEY(id_poste) REFERENCES poste(id)
 );
+
+/* Minitialiser cv */
+DELETE FROM cv_experience;
+DELETE FROM cv_diplome;
+DELETE FROM cv_langue;
+DELETE FROM moyenne_cv;
+DELETE FROM cv;

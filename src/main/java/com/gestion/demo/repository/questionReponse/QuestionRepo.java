@@ -10,6 +10,6 @@ import com.gestion.demo.model.questionReponse.Question;
 
 public interface QuestionRepo extends JpaRepository<Question,Integer> {
     
-    @Query("SELECT q from question where q.question like = '%:chaine%' ")
+    @Query("SELECT q from Question q where q.question like  '%:chaine%' ")
     List<Question> findQuestionContains(@Param("chaine") String chaine);
 }

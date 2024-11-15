@@ -1,6 +1,7 @@
 package com.gestion.demo.services;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,9 @@ import com.gestion.demo.model.CV.CvLangue;
 import com.gestion.demo.model.CV.MoyenneCv;
 import com.gestion.demo.model.Profil.Profil;
 import com.gestion.demo.model.Profil.ProfilDiplome;
+import com.gestion.demo.model.Profil.ProfilLangue;
 import com.gestion.demo.model.Simple.Diplome;
+import com.gestion.demo.model.Simple.Langue;
 import com.gestion.demo.repository.Annonce.AnnonceRepo;
 import com.gestion.demo.repository.CV.CvRepo;
 import com.gestion.demo.repository.simple.DiplomeRepo;
@@ -79,20 +82,55 @@ public class CvService {
         Annonce annonce = annonceRepo.findById(idAnnonce).orElseThrow(()-> new Exception("Annonce inexistante "));
         Profil profil = annonce.getProfil();
         /* Ato ny manao comparaison */
-        // Mbola tsy mety
+        
+        // Age
         double points = 0;
         if (profil.getAgeMin() <= cv.calculerAge() && cv.calculerAge() <= profil.getAgeMax() ) {
             points+=3;
         }
+        // Sexe
+        if (profil.getSexe().getId() == cv.getSexe().getId()) {
+            points+=3;
+        }
+        // Diplomes
         for (int i = 0; i < profil.getDiplomes().size(); i++) {
             ProfilDiplome profilDiplome = profil.getDiplomes().get(i);
             for (int j = 0; j < cv.getDiplomes().size(); j++) {
                 CvDiplome cvDiplome = cv.getDiplomes().get(j);
-                if (profilDiplome.getDiplome().getNiveau() == cvDiplome.getDiplome().getNiveau()) {
-                    points+=2;        
+                if (profilDiplome.getDiplome().getNiveau() == cvDiplome.getDiplome().getNiveau() && profilDiplome.getFiliere().getId() == cvDiplome.getFiliere().getId() ) {
+                    points+=7;        
                 }
             }
         }
+        // Langues
+        for (int i = 0; i < profil.getLangues().size(); i++) {
+            ProfilLangue langueProfil = profil.getLangues().get(i);
+            for (int j = 0; j < cv.getLangues().size() ; j++) {
+                if (langueProfil.getId() == cv.getLangues().get(j).getId()) {
+                    points+=3;
+                }
+            }
+        }
+
+        // Salaire
+        if (cv.getSalaireMin() <= profil.getSalaireMin() ) {
+            points+=2;
+        }
+        if (cv.getSalaireMax()<= profil.getSalaireMax() ) {
+            points+=3;
+        }
+
+        //Experience
+        //Sommena ny experience nananana
+        int anneeCvExp = 0;
+        for (int i = 0; i < cv.getExperiences().size();i++) {
+            Period period = Period.between(cv.getExperiences().get(i).getDateDebut(), cv.getExperiences().get(i).getDateFin());             
+            anneeCvExp += period.getYears();
+        }
+        if (anneeCvExp >= profil.getAnneeExp() ) {
+            points+=7;
+        }
+
         MoyenneCv mCv = new MoyenneCv();
         mCv.setMoyenne(points);
         mCv.setCv(cv);
